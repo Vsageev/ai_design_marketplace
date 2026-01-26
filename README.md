@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Design Marketplace
+
+A Next.js application for browsing and comparing design systems. Each design system includes comprehensive guidelines and a live preview showcase.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx                    # Homepage with design cards
+│   ├── layout.tsx                  # Root layout
+│   ├── globals.css                 # Global styles
+│   └── designs/
+│       └── [design-name]/
+│           ├── page.tsx            # Full showcase page
+│           ├── layout.tsx          # Design page layout (reads guidelines.md)
+│           ├── guidelines.md       # Design system documentation
+│           └── preview.tsx         # Preview component + metadata for homepage
+└── components/
+    ├── DesignPageLayout.tsx        # Shared layout for design pages
+    └── ShowcaseSections.tsx        # Reusable showcase UI components
+```
+
+## Adding a New Design
+
+1. Create a new folder under `src/app/designs/[design-name]/`
+
+2. Add required files:
+   - `guidelines.md` - Design system documentation (colors, typography, components, etc.)
+   - `page.tsx` - Full showcase page with all design elements
+   - `layout.tsx` - Page layout that reads the guidelines
+   - `preview.tsx` - Exports `metadata` object and `PreviewComponent` for the homepage
+
+3. Register the design in `src/app/page.tsx`:
+   ```tsx
+   import {
+     metadata as newDesignMeta,
+     PreviewComponent as NewDesignPreview,
+   } from './designs/new-design/preview';
+
+   const designs = [
+     // ... existing designs
+     {
+       ...newDesignMeta,
+       PreviewComponent: NewDesignPreview,
+     },
+   ];
+   ```
+
+## Preview Component Format
+
+Each design's `preview.tsx` should export:
+
+```tsx
+// Design metadata
+export const metadata = {
+  id: 'design-slug',
+  name: 'Design Name',
+  description: 'Brief description of the design system.',
+  tags: ['Tag1', 'Tag2', 'Tag3'],
+};
+
+// Preview component with real HTML/CSS following the guidelines
+export function PreviewComponent() {
+  return (
+    <>
+      <style>{/* CSS based on guidelines.md */}</style>
+      <div className="preview">
+        {/* Mini showcase with actual styled elements */}
+      </div>
+    </>
+  );
+}
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to browse design systems.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Designs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Cheerful Minimalism** - Clean interfaces with joyful feedback animations
+- **Neo Brutalist** - Raw aesthetics, bold typography, and hard shadows

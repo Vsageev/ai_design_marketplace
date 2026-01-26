@@ -1,0 +1,22 @@
+---
+description: Register a new design on the homepage
+globs: src/app/page.tsx
+alwaysApply: false
+---
+
+# Homepage: registering a design
+
+The homepage (`src/app/page.tsx`) manually builds the `designs` array from each design’s `preview.tsx`.
+
+To add a new design:
+
+- Import from `./designs/<design-slug>/preview`:
+  - `metadata as <Something>Meta`
+  - `PreviewComponent as <Something>Preview`
+- Add to `designs`:
+  - `{ ...<Something>Meta, PreviewComponent: <Something>Preview }`
+
+Conventions:
+
+- `<design-slug>` must match the folder under `src/app/designs/`
+- The card links to `/designs/${metadata.id}`

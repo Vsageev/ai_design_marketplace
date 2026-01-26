@@ -1,0 +1,27 @@
+---
+description: Design guidelines.md structure (tokens + component rules)
+globs: src/app/designs/**/guidelines.md
+alwaysApply: false
+---
+
+# `guidelines.md` structure
+
+Keep it scannable and token-driven (see existing designs like `minimalist-black`).
+
+## Should include (in roughly this order)
+
+- **Title + 1–2 sentence summary**
+- **Philosophy**
+- **Color Palette**
+  - Backgrounds / Borders / Text / Accents (and Semantic colors if needed)
+- **Typography**
+  - Font family + scale (sizes/weights/line-height/tracking)
+- **Components**
+  - Buttons, Cards, Inputs, Badges (and any custom components)
+- **Layout principles**
+- **Animation / interaction rules**
+
+Notes:
+
+- Prefer concrete values (hex/rgba, px/rem, durations).
+- The showcase generator expects these tokens to map into `page.tsx` + `preview.tsx`.

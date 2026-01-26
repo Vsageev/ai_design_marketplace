@@ -1,0 +1,25 @@
+---
+description: Design showcase page.tsx structure (standard sections order)
+globs: src/app/designs/**/page.tsx
+alwaysApply: false
+---
+
+# `page.tsx` structure (design showcase)
+
+Follow `guideline_to_page_prompt.md`:
+
+- Define a `cssStyles` string with **tokens extracted from `guidelines.md`** (colors, typography, spacing, radius, shadows, timings).
+- Render with:
+  - `<style>{cssStyles}</style>`
+  - `<main className="showcase">...</main>` (or equivalent scoped wrapper)
+
+## Required sections (order matters)
+
+1. Hero header (title, tagline, primary CTA)
+2. Color palette (grouped swatches: base / accent / semantic)
+3. Typography scale (headings + body variants + paragraph sample)
+4. Buttons & interactive (primary/secondary/success/disabled + link style)
+5. Cards (3+ cards; hover behavior per guidelines)
+6. Form elements (input, error input, toggle/checkbox, select, submit)
+7. Feedback & status (success/error/warning/info + progress ~65%)
+8. Sample content layout (2–3 data rows with status + actions)

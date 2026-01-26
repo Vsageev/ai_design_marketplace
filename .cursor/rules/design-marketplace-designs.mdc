@@ -1,0 +1,28 @@
+---
+description: How to add a new design (folder contract + files)
+globs: src/app/designs/**
+alwaysApply: false
+---
+
+# Adding a new design (Design Marketplace)
+
+- **Create folder**: `src/app/designs/<design-slug>/` (kebab-case)
+- **Slug must match**: `preview.tsx` → `metadata.id`
+- **Required files**:
+  - `guidelines.md`: the design system spec
+  - `layout.tsx`: reads `guidelines.md` and wraps with `DesignPageLayout`
+  - `page.tsx`: full showcase page (real UI built from the guidelines)
+  - `preview.tsx`: exports `metadata` + `PreviewComponent` (homepage card)
+
+## Contracts to follow
+
+- `preview.tsx` exports:
+  - `export const metadata = { id, name, description, tags }`
+  - `export function PreviewComponent() { ... }`
+- `layout.tsx`:
+  - Read markdown from: `path.join(process.cwd(), 'src/app/designs/<slug>/guidelines.md')`
+  - Render: `<DesignPageLayout title="<Design Name>" markdown={markdown}>{children}</DesignPageLayout>`
+
+## When done
+
+- Register the design in `src/app/page.tsx` by importing `metadata` + `PreviewComponent` and appending to the `designs` array.
