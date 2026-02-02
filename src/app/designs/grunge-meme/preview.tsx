@@ -157,44 +157,44 @@ export function PreviewComponent() {
       <style>{previewStyles}</style>
       <div className="gm-preview">
         <div className="gm-preview-header">
-          <div className="gm-preview-title">РАБОТА<br/>В ИНТЕРНЕТЕ</div>
-          <div className="gm-preview-subtitle">✓ БЕЗ ОПЫТА</div>
+          <div className="gm-preview-title">WORK<br/>ONLINE</div>
+          <div className="gm-preview-subtitle">✓ NO EXPERIENCE</div>
         </div>
-        
+
         <div className="gm-preview-content">
           <div className="gm-preview-card">
             <div className="gm-preview-card-icon">💰</div>
             <div className="gm-preview-card-body">
-              <div className="gm-preview-card-title">ДЕНЬГИ</div>
+              <div className="gm-preview-card-title">MONEY</div>
               <div className="gm-preview-checklist">
                 <div className="gm-preview-check">
                   <span className="gm-preview-checkbox">✓</span>
-                  <span>Быстро</span>
+                  <span>Fast</span>
                 </div>
                 <div className="gm-preview-check">
                   <span className="gm-preview-checkbox">✓</span>
-                  <span>Честно</span>
+                  <span>Honest</span>
                 </div>
               </div>
-              <button className="gm-preview-btn">НАЧАТЬ</button>
+              <button className="gm-preview-btn">START</button>
             </div>
           </div>
 
           <div className="gm-preview-card">
             <div className="gm-preview-card-icon">🚀</div>
             <div className="gm-preview-card-body">
-              <div className="gm-preview-card-title">РОСТ</div>
+              <div className="gm-preview-card-title">GROWTH</div>
               <div className="gm-preview-checklist">
                 <div className="gm-preview-check">
                   <span className="gm-preview-checkbox">✓</span>
-                  <span>Навыки</span>
+                  <span>Skills</span>
                 </div>
                 <div className="gm-preview-check">
                   <span className="gm-preview-checkbox">✓</span>
-                  <span>Опыт</span>
+                  <span>Experience</span>
                 </div>
               </div>
-              <button className="gm-preview-btn">ВПЕРЕД</button>
+              <button className="gm-preview-btn">GO</button>
             </div>
           </div>
         </div>

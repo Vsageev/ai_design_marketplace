@@ -19,6 +19,58 @@ import {
   metadata as grungeMemeMeta,
   PreviewComponent as GrungeMemePreview,
 } from './designs/grunge-meme/preview';
+import {
+  metadata as itParkMeta,
+  PreviewComponent as ItParkPreview,
+} from './designs/it-park/preview';
+import {
+  metadata as itPark2Meta,
+  PreviewComponent as ItPark2Preview,
+} from './designs/it-park2/preview';
+import {
+  metadata as itPark4Meta,
+  PreviewComponent as ItPark4Preview,
+} from './designs/it-park4/preview';
+import {
+  metadata as itPark3Meta,
+  PreviewComponent as ItPark3Preview,
+} from './designs/it-park3/preview';
+import {
+  metadata as ycEditorialMeta,
+  PreviewComponent as YcEditorialPreview,
+} from './designs/yc-editorial/preview';
+import {
+  metadata as ycWarmEditorialMeta,
+  PreviewComponent as YcWarmEditorialPreview,
+} from './designs/yc-warm-editorial/preview';
+import {
+  metadata as ycEditorialNewMeta,
+  PreviewComponent as YcEditorialNewPreview,
+} from './designs/yc-editorial-new/preview';
+import {
+  metadata as boldStreetFoodMeta,
+  PreviewComponent as BoldStreetFoodPreview,
+} from './designs/bold-street-food/preview';
+import {
+  metadata as retroSnackPosterMeta,
+  PreviewComponent as RetroSnackPosterPreview,
+} from './designs/retro-snack-poster/preview';
+import {
+  metadata as hexAnalyticsMeta,
+  PreviewComponent as HexAnalyticsPreview,
+} from './designs/hex-analytics/preview';
+import {
+  metadata as hexSecurityMeta,
+  PreviewComponent as HexSecurityPreview,
+} from './designs/hex-security/preview';
+import {
+  metadata as hexSecurityPentestMeta,
+  PreviewComponent as HexSecurityPentestPreview,
+} from './designs/hex-security-pentest/preview';
+import {
+  metadata as hexPentestMeta,
+  PreviewComponent as HexPentestPreview,
+} from './designs/hex-pentest/preview';
 
 // Design entries with their preview components
 const designs = [
@@ -42,6 +94,58 @@ const designs = [
     ...grungeMemeMeta,
     PreviewComponent: GrungeMemePreview,
   },
+  {
+    ...itParkMeta,
+    PreviewComponent: ItParkPreview,
+  },
+  {
+    ...itPark2Meta,
+    PreviewComponent: ItPark2Preview,
+  },
+  {
+    ...itPark4Meta,
+    PreviewComponent: ItPark4Preview,
+  },
+  {
+    ...itPark3Meta,
+    PreviewComponent: ItPark3Preview,
+  },
+  {
+    ...ycEditorialMeta,
+    PreviewComponent: YcEditorialPreview,
+  },
+  {
+    ...ycWarmEditorialMeta,
+    PreviewComponent: YcWarmEditorialPreview,
+  },
+  {
+    ...ycEditorialNewMeta,
+    PreviewComponent: YcEditorialNewPreview,
+  },
+  {
+    ...boldStreetFoodMeta,
+    PreviewComponent: BoldStreetFoodPreview,
+  },
+  {
+    ...retroSnackPosterMeta,
+    PreviewComponent: RetroSnackPosterPreview,
+  },
+  {
+    ...hexAnalyticsMeta,
+    PreviewComponent: HexAnalyticsPreview,
+  },
+  {
+    ...hexSecurityMeta,
+    PreviewComponent: HexSecurityPreview,
+  },
+  {
+    ...hexSecurityPentestMeta,
+    PreviewComponent: HexSecurityPentestPreview,
+  },
+  {
+    ...hexPentestMeta,
+    PreviewComponent: HexPentestPreview,
+  },
 ];
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -53,6 +157,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   header: {
     marginBottom: '48px',
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: '16px',
+    flexWrap: 'wrap',
   },
   title: {
     fontSize: '32px',
@@ -64,6 +173,25 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: '16px',
     color: 'var(--muted)',
     maxWidth: '500px',
+  },
+  headerNav: {
+    display: 'flex',
+    gap: '8px',
+    alignItems: 'center',
+  },
+  navLink: {
+    fontSize: '14px',
+    fontWeight: 600,
+    color: 'var(--muted)',
+    padding: '8px 14px',
+    borderRadius: '999px',
+    border: '1px solid var(--border)',
+    textDecoration: 'none',
+  },
+  navActive: {
+    color: 'var(--accent)',
+    borderColor: 'rgba(79, 70, 229, 0.35)',
+    background: 'rgba(79, 70, 229, 0.08)',
   },
   grid: {
     display: 'grid',
@@ -145,10 +273,16 @@ export default function Home() {
   return (
     <main style={styles.container}>
       <header style={styles.header}>
-        <h1 style={styles.title}>Design Marketplace</h1>
-        <p style={styles.subtitle}>
-          Browse design guidelines and see how pages created with them look. Compare different design systems side by side.
-        </p>
+        <div>
+          <h1 style={styles.title}>Design Marketplace</h1>
+          <p style={styles.subtitle}>
+            Browse design guidelines and see how pages created with them look. Compare different design systems side by side.
+          </p>
+        </div>
+        <div style={styles.headerNav}>
+          <Link href="/" style={{ ...styles.navLink, ...styles.navActive }}>Designs</Link>
+          <Link href="/components" style={styles.navLink}>Components</Link>
+        </div>
       </header>
 
       <div style={styles.grid}>

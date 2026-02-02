@@ -1,0 +1,20 @@
+import fs from 'fs';
+import path from 'path';
+import { DesignPageLayout } from '@/components/DesignPageLayout';
+
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const filePath = path.join(process.cwd(), 'src/app/designs/yc-editorial/guidelines.md');
+  let markdown = '';
+
+  try {
+    markdown = fs.readFileSync(filePath, 'utf-8');
+  } catch {
+    markdown = '# Guidelines not found';
+  }
+
+  return (
+    <DesignPageLayout title="YC Editorial" markdown={markdown}>
+      {children}
+    </DesignPageLayout>
+  );
+}

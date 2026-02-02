@@ -6,12 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "remotion:preview": "remotion studio remotion/index.ts",
+    "remotion:render": "remotion render remotion/index.ts DemoVideo out/demo.mp4",
+    "remotion:render:4k": "remotion render remotion/index.ts DemoVideo4K out/demo-4k.mp4",
+    "remotion:render:square": "remotion render remotion/index.ts DemoVideoSquare out/demo-square.mp4"
   },
   "dependencies": {
+    "@remotion/bundler": "^4.0.417",
+    "@remotion/cli": "^4.0.417",
     "next": "16.1.4",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "remotion": "^4.0.417"
   },
   "devDependencies": {
     "@types/node": "^20",

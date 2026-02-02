@@ -217,6 +217,184 @@ const cssStyles = `
   .badge-brutal-inactive {
     background: var(--off-white);
   }
+
+  /* Animated demo */
+  .demo-wrapper {
+    display: grid;
+    gap: 16px;
+  }
+
+  .demo-stage {
+    position: relative;
+    border: 3px solid var(--black);
+    box-shadow: 8px 8px 0 var(--black);
+    background: var(--white);
+    padding: 20px;
+    min-height: 360px;
+    overflow: hidden;
+  }
+
+  .demo-caption {
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .demo-animate {
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .demo-header {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .demo-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .demo-card {
+    position: absolute;
+    top: 90px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .demo-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .demo-alert {
+    position: absolute;
+    top: 100px;
+    left: 18px;
+    right: 18px;
+    padding: 16px;
+    border: 3px solid var(--black);
+    background: var(--hot-pink);
+    font-weight: 700;
+  }
+
+  .demo-list {
+    position: absolute;
+    top: 90px;
+    left: 18px;
+    right: 18px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .demo-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 3px solid var(--black);
+    background: var(--white);
+  }
+
+  .demo-cta {
+    position: absolute;
+    bottom: 36px;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .demo-timeline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 8px;
+    background: var(--black);
+  }
+
+  .demo-timeline::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--electric-yellow);
+    animation: demo-progress 12s linear infinite;
+  }
+
+  @keyframes demo-progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  @keyframes demo-header {
+    0%, 7% { opacity: 0; transform: translateY(-10px); }
+    8%, 30% { opacity: 1; transform: translateY(0); }
+    35%, 100% { opacity: 0; transform: translateY(-6px); }
+  }
+
+  @keyframes demo-card {
+    0%, 18% { opacity: 0; transform: translateY(12px) scale(0.98); }
+    20%, 45% { opacity: 1; transform: translateY(0) scale(1); }
+    50%, 100% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  }
+
+  @keyframes demo-alert {
+    0%, 38% { opacity: 0; transform: translateX(-12px); }
+    40%, 60% { opacity: 1; transform: translateX(0); }
+    65%, 100% { opacity: 0; transform: translateX(10px); }
+  }
+
+  @keyframes demo-list {
+    0%, 58% { opacity: 0; transform: translateY(12px); }
+    60%, 82% { opacity: 1; transform: translateY(0); }
+    86%, 100% { opacity: 0; transform: translateY(-10px); }
+  }
+
+  @keyframes demo-cta {
+    0%, 74% { opacity: 0; transform: translateY(14px); }
+    76%, 90% { opacity: 1; transform: translateY(0); }
+    92%, 100% { opacity: 0; transform: translateY(-8px); }
+  }
+
+  @media (max-width: 720px) {
+    .demo-stage {
+      min-height: 420px;
+    }
+
+    .demo-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-animate {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .demo-timeline::before {
+      animation: none;
+      width: 100%;
+    }
+  }
 `;
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -455,6 +633,59 @@ export default function NeoBrutalistShowcase() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Animated Demo */}
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Animated Demo</h2>
+          <div className="demo-wrapper">
+            <div className="demo-stage" aria-label="Staged component timeline demo">
+              <div className="demo-header demo-animate" style={{ animationName: 'demo-header' }}>
+                <span className="badge-brutal badge-brutal-active">Live</span>
+                <span className="demo-title">Brutalist UI Kit</span>
+              </div>
+
+              <div className="demo-card card-brutal demo-animate" style={{ animationName: 'demo-card' }}>
+                <div style={{ width: '100%', height: '8px', background: '#FFFF00', marginBottom: '12px' }} />
+                <div style={{ fontWeight: 700, textTransform: 'uppercase' }}>Launch Announcement</div>
+                <div style={{ marginTop: '8px', fontSize: '14px' }}>
+                  High-contrast layouts, loud colors, and zero compromise.
+                </div>
+                <div className="demo-card-row">
+                  <span style={{ fontSize: '12px', textTransform: 'uppercase' }}>Release 2.3</span>
+                  <button className="btn-brutal-secondary" style={{ padding: '6px 12px', fontSize: '12px' }}>
+                    Read Notes
+                  </button>
+                </div>
+              </div>
+
+              <div className="demo-alert demo-animate" style={{ animationName: 'demo-alert' }}>
+                Alert: Spike in signups. Scale now.
+              </div>
+
+              <div className="demo-list demo-animate" style={{ animationName: 'demo-list' }}>
+                <div className="demo-list-item">
+                  <span style={{ fontWeight: 700, textTransform: 'uppercase' }}>New Checkout</span>
+                  <span className="badge-brutal badge-brutal-active">Hot</span>
+                </div>
+                <div className="demo-list-item">
+                  <span style={{ fontWeight: 700, textTransform: 'uppercase' }}>Pulse Report</span>
+                  <span className="badge-brutal badge-brutal-inactive">Queued</span>
+                </div>
+              </div>
+
+              <div className="demo-cta demo-animate" style={{ animationName: 'demo-cta' }}>
+                <button className="btn-brutal">Launch App</button>
+                <button className="btn-brutal-secondary">View Docs</button>
+                <span style={{ fontSize: '12px', textTransform: 'uppercase' }}>12s loop</span>
+              </div>
+
+              <div className="demo-timeline" aria-hidden="true" />
+            </div>
+            <div className="demo-caption">
+              Staged timeline: header, feature card, alert, list, then call to action.
+            </div>
           </div>
         </section>
 

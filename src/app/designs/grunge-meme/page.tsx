@@ -484,14 +484,14 @@ export default function GrungeMemeShowcase() {
       <main className="showcase">
         {/* Hero */}
         <div className="hero">
-          <h1 className="hero-title">КАК НАЙТИ РАБОТУ<br/>В ИНТЕРНЕТЕ</h1>
-          <p className="hero-subtitle">✓ БЕЗ ОПЫТА ✓ ЛЮБОМУ ЧЕЛУ ✓ РЯДИ ДЕНЕГ</p>
-          <button className="btn btn-primary">НАЧАТЬ СЕЙЧАС</button>
+          <h1 className="hero-title">HOW TO FIND<br/>WORK ONLINE</h1>
+          <p className="hero-subtitle">✓ NO EXPERIENCE ✓ FOR ANYONE ✓ LOADS OF MONEY</p>
+          <button className="btn btn-primary">START NOW</button>
         </div>
 
         {/* Color Palette */}
         <div className="section">
-          <h2 className="section-title">Цвета</h2>
+          <h2 className="section-title">Colors</h2>
           <div className="color-grid">
             <div className="color-swatch">
               <div className="color-box" style={{ background: '#E8E4D9' }}></div>
@@ -538,42 +538,42 @@ export default function GrungeMemeShowcase() {
 
         {/* Typography */}
         <div className="section">
-          <h2 className="section-title">Типографика</h2>
-          
+          <h2 className="section-title">Typography</h2>
+
           <div className="type-sample">
             <div className="type-label">H1 - 64px / 800</div>
-            <div className="h1-sample">МАКСИМАЛЬНЫЙ УДАР</div>
+            <div className="h1-sample">MAXIMUM IMPACT</div>
           </div>
 
           <div className="type-sample">
             <div className="type-label">H2 - 48px / 800</div>
-            <div className="h2-sample">ЗАГОЛОВОК СЕКЦИИ</div>
+            <div className="h2-sample">SECTION HEADING</div>
           </div>
 
           <div className="type-sample">
             <div className="type-label">H3 - 36px / 700</div>
-            <div className="h3-sample">Подзаголовок</div>
+            <div className="h3-sample">Subheading</div>
           </div>
 
           <div className="type-sample">
             <div className="type-label">Body Large - 20px / 600</div>
-            <div className="body-large-sample">Жирный текст для привлечения внимания. Идеально для списков и важных пунктов.</div>
+            <div className="body-large-sample">Bold text to grab attention. Perfect for lists and key points.</div>
           </div>
 
           <div className="type-sample">
             <div className="type-label">Body - 16px / 400</div>
-            <div className="body-sample">Обычный текст для основного контента. Читается легко и приятно. Используйте для параграфов и длинных описаний. Это основной шрифт для всего контента на странице.</div>
+            <div className="body-sample">Regular text for main content. Easy and pleasant to read. Use for paragraphs and long descriptions. This is the main font for all page content.</div>
           </div>
 
           <div className="type-sample">
             <div className="type-label">Caption - 14px / 400</div>
-            <div className="caption-sample">Маленький текст для подписей и мелких деталей</div>
+            <div className="caption-sample">Small text for captions and fine details</div>
           </div>
         </div>
 
         {/* Buttons */}
         <div className="section">
-          <h2 className="section-title">Кнопки</h2>
+          <h2 className="section-title">Buttons</h2>
           <div className="button-grid">
             <button className="btn btn-primary">Primary</button>
             <button className="btn btn-secondary">Secondary</button>
@@ -585,30 +585,30 @@ export default function GrungeMemeShowcase() {
 
         {/* Cards */}
         <div className="section">
-          <h2 className="section-title">Карточки</h2>
+          <h2 className="section-title">Cards</h2>
           <div className="card-grid">
             <div className="card">
               <div className="card-header">🎯</div>
               <div className="card-body">
-                <h3 className="card-title">Цель</h3>
-                <p className="card-desc">Находите работу без опыта. Просто начните делать и зарабатывайте деньги.</p>
-                <button className="btn btn-primary btn-small">Узнать больше</button>
+                <h3 className="card-title">Goal</h3>
+                <p className="card-desc">Find work without experience. Just start doing and earn money.</p>
+                <button className="btn btn-primary btn-small">Learn More</button>
               </div>
             </div>
             <div className="card">
               <div className="card-header">💰</div>
               <div className="card-body">
-                <h3 className="card-title">Деньги</h3>
-                <p className="card-desc">Получайте реальную оплату за свою работу. Быстрые выплаты и честные условия.</p>
-                <button className="btn btn-primary btn-small">Начать</button>
+                <h3 className="card-title">Money</h3>
+                <p className="card-desc">Get real payment for your work. Fast payouts and fair terms.</p>
+                <button className="btn btn-primary btn-small">Start</button>
               </div>
             </div>
             <div className="card">
               <div className="card-header">🚀</div>
               <div className="card-body">
-                <h3 className="card-title">Рост</h3>
-                <p className="card-desc">Развивайтесь вместе с нами. Новые навыки и возможности каждый день.</p>
-                <button className="btn btn-primary btn-small">Поехали</button>
+                <h3 className="card-title">Growth</h3>
+                <p className="card-desc">Grow with us. New skills and opportunities every day.</p>
+                <button className="btn btn-primary btn-small">Let's Go</button>
               </div>
             </div>
           </div>
@@ -616,50 +616,50 @@ export default function GrungeMemeShowcase() {
 
         {/* Forms */}
         <div className="section">
-          <h2 className="section-title">Формы</h2>
-          
+          <h2 className="section-title">Forms</h2>
+
           <div className="form-group">
-            <label className="form-label">Ваше имя</label>
-            <input type="text" className="form-input" placeholder="Введите имя" />
+            <label className="form-label">Your Name</label>
+            <input type="text" className="form-input" placeholder="Enter name" />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Email с ошибкой</label>
+            <label className="form-label">Email with Error</label>
             <input type="email" className="form-input error" placeholder="email@example.com" />
-            <div className="form-error">⚠ Неправильный формат email</div>
+            <div className="form-error">Invalid email format</div>
           </div>
 
           <div className="form-group">
             <div className="checkbox-group">
               <div className="checkbox">✓</div>
-              <label className="form-label" style={{ marginBottom: 0 }}>Я согласен с условиями</label>
+              <label className="form-label" style={{ marginBottom: 0 }}>I agree to the terms</label>
             </div>
           </div>
 
-          <button className="btn btn-primary">Отправить</button>
+          <button className="btn btn-primary">Submit</button>
         </div>
 
         {/* Feedback */}
         <div className="section">
-          <h2 className="section-title">Уведомления</h2>
-          
+          <h2 className="section-title">Notifications</h2>
+
           <div className="alert alert-success">
-            ✓ Успех! Ваши данные сохранены.
+            Success! Your data has been saved.
           </div>
 
           <div className="alert alert-error">
-            ✗ Ошибка! Что-то пошло не так.
+            Error! Something went wrong.
           </div>
 
           <div className="alert alert-warning">
-            ⚠ Внимание! Проверьте введенные данные.
+            Warning! Check your input data.
           </div>
 
           <div className="alert alert-info">
-            ℹ Информация: Обновление займет несколько минут.
+            Info: Update will take a few minutes.
           </div>
 
-          <h3 className="h3-sample" style={{ marginTop: '24px', marginBottom: '12px' }}>Прогресс</h3>
+          <h3 className="h3-sample" style={{ marginTop: '24px', marginBottom: '12px' }}>Progress</h3>
           <div className="progress-bar">
             <div className="progress-fill">65%</div>
           </div>
@@ -667,67 +667,67 @@ export default function GrungeMemeShowcase() {
 
         {/* Sample Content */}
         <div className="section">
-          <h2 className="section-title">Список задач</h2>
-          
+          <h2 className="section-title">Task List</h2>
+
           <div className="content-row">
             <div>
-              <strong>Создать аккаунт</strong>
-              <div className="caption-sample">Зарегистрируйтесь на платформе</div>
+              <strong>Create Account</strong>
+              <div className="caption-sample">Register on the platform</div>
             </div>
             <div>
-              <span className="badge badge-success">Активно</span>
+              <span className="badge badge-success">Active</span>
             </div>
             <div>
-              <button className="btn btn-primary btn-small">Действие</button>
+              <button className="btn btn-primary btn-small">Action</button>
             </div>
           </div>
 
           <div className="content-row">
             <div>
-              <strong>Заполнить профиль</strong>
-              <div className="caption-sample">Добавьте информацию о себе</div>
+              <strong>Complete Profile</strong>
+              <div className="caption-sample">Add information about yourself</div>
             </div>
             <div>
-              <span className="badge badge-success">Активно</span>
+              <span className="badge badge-success">Active</span>
             </div>
             <div>
-              <button className="btn btn-primary btn-small">Действие</button>
+              <button className="btn btn-primary btn-small">Action</button>
             </div>
           </div>
 
           <div className="content-row">
             <div>
-              <strong>Найти работу</strong>
-              <div className="caption-sample">Выберите подходящий заказ</div>
+              <strong>Find Work</strong>
+              <div className="caption-sample">Choose a suitable order</div>
             </div>
             <div>
-              <span className="badge badge-error">Неактивно</span>
+              <span className="badge badge-error">Inactive</span>
             </div>
             <div>
-              <button className="btn btn-primary btn-small" disabled>Действие</button>
+              <button className="btn btn-primary btn-small" disabled>Action</button>
             </div>
           </div>
         </div>
 
         {/* Checklist Example */}
         <div className="section">
-          <h2 className="section-title">Почему выбирают нас?</h2>
+          <h2 className="section-title">Why Choose Us?</h2>
           <ul className="checklist">
             <li className="checklist-item">
               <span className="checkbox">✓</span>
-              <span>БЕЗ ОПЫТА - начинайте с нуля</span>
+              <span>NO EXPERIENCE - start from scratch</span>
             </li>
             <li className="checklist-item">
               <span className="checkbox">✓</span>
-              <span>ЛЮБОМУ ЧЕЛУ - без ограничений</span>
+              <span>FOR ANYONE - no restrictions</span>
             </li>
             <li className="checklist-item">
               <span className="checkbox">✓</span>
-              <span>РЯДИ ДЕНЕГ - заработок уже сегодня</span>
+              <span>LOADS OF MONEY - start earning today</span>
             </li>
             <li className="checklist-item">
               <span className="checkbox">✓</span>
-              <span>БЫСТРЫЙ СТАРТ - начните за 5 минут</span>
+              <span>QUICK START - begin in 5 minutes</span>
             </li>
           </ul>
         </div>
