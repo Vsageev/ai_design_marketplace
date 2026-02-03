@@ -6,7 +6,7 @@ alwaysApply: false
 
 # `page.tsx` structure (design showcase)
 
-Follow `guideline_to_page_prompt.md`:
+Follow `design_page_creation_guidelines.md`:
 
 - Define a `cssStyles` string with **tokens extracted from `guidelines.md`** (colors, typography, spacing, radius, shadows, timings).
 - Render with:

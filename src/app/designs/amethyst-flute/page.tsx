@@ -160,6 +160,9 @@ const cssStyles = `
     position: relative;
     overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .af-btn-primary {
@@ -217,6 +220,9 @@ const cssStyles = `
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
 
   .af-link::after {
@@ -410,6 +416,13 @@ const cssStyles = `
     border-bottom: 1px solid var(--vellum);
     position: relative;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .af-card-header svg {
+    flex-shrink: 0;
   }
 
   .af-card-body {
@@ -513,10 +526,22 @@ const cssStyles = `
     border-radius: var(--radius-md);
     border: 1px solid;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
     font-size: 14px;
     line-height: 1.5;
+  }
+
+  .af-alert-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .af-alert-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .af-alert strong {
@@ -592,6 +617,7 @@ const cssStyles = `
   .af-badge {
     display: inline-flex;
     align-items: center;
+    gap: 5px;
     padding: 4px 12px;
     border-radius: var(--radius-sm);
     font-size: 12px;
@@ -639,6 +665,9 @@ const cssStyles = `
     background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(240, 178, 122, 0.2));
     border: 1px solid rgba(155, 89, 182, 0.2);
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .af-row {
@@ -698,6 +727,9 @@ const cssStyles = `
     color: var(--fig);
     cursor: pointer;
     transition: border-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
 
   .af-pill:hover {
@@ -720,6 +752,124 @@ const cssStyles = `
   }
 `;
 
+/* ---- SVG Icon Components ---- */
+const IconArrowRight = ({ size = 16, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
+const IconDiamond = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41L13.7 2.71a2.41 2.41 0 0 0-3.41 0z" />
+  </svg>
+);
+
+const IconEye = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const IconGlobe = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+);
+
+const IconDroplet = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+  </svg>
+);
+
+const IconLayers = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" />
+  </svg>
+);
+
+const IconCheckCircle = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" stroke="#3D6B4E" />
+    <polyline points="9 12 11 14 15 10" stroke="#3D6B4E" />
+  </svg>
+);
+
+const IconXCircle = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" stroke="#8B3A3A" />
+    <line x1="15" y1="9" x2="9" y2="15" stroke="#8B3A3A" /><line x1="9" y1="9" x2="15" y2="15" stroke="#8B3A3A" />
+  </svg>
+);
+
+const IconAlertTriangle = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="#7A5E24" />
+    <line x1="12" y1="9" x2="12" y2="13" stroke="#7A5E24" /><line x1="12" y1="17" x2="12.01" y2="17" stroke="#7A5E24" />
+  </svg>
+);
+
+const IconInfoCircle = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" stroke="#3D5F75" />
+    <line x1="12" y1="16" x2="12" y2="12" stroke="#3D5F75" /><line x1="12" y1="8" x2="12.01" y2="8" stroke="#3D5F75" />
+  </svg>
+);
+
+const IconStar = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+);
+
+const IconPause = ({ size = 10, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
+    <rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" />
+  </svg>
+);
+
+const IconArchive = ({ size = 10, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="21 8 21 21 3 21 3 8" /><rect x="1" y="3" width="22" height="5" /><line x1="10" y1="12" x2="14" y2="12" />
+  </svg>
+);
+
+const IconGoblet = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 2h8l-1 10H9L8 2z" /><line x1="12" y1="12" x2="12" y2="19" /><line x1="8" y1="19" x2="16" y2="19" />
+  </svg>
+);
+
+const IconPencil = ({ size = 12, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+  </svg>
+);
+
+const IconSearch = ({ size = 12, color = 'currentColor' }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+  </svg>
+);
+
+const IconCrystal = ({ size = 22 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <defs>
+      <linearGradient id="crystalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#9B59B6" />
+        <stop offset="100%" stopColor="#F0B27A" />
+      </linearGradient>
+    </defs>
+    <polygon points="12 2 4 9 8 22 16 22 20 9" stroke="url(#crystalGrad)" strokeWidth="1.5" strokeLinejoin="round" />
+    <line x1="12" y1="2" x2="8" y2="22" stroke="url(#crystalGrad)" strokeWidth="1" opacity="0.5" />
+    <line x1="12" y1="2" x2="16" y2="22" stroke="url(#crystalGrad)" strokeWidth="1" opacity="0.5" />
+    <line x1="4" y1="9" x2="20" y2="9" stroke="url(#crystalGrad)" strokeWidth="1" opacity="0.5" />
+  </svg>
+);
+
 export default function AmethystFluteShowcase() {
   return (
     <>
@@ -737,8 +887,8 @@ export default function AmethystFluteShowcase() {
               Vertical ridges structure the rhythm while warm gradients carry the eye from amethyst depths to sunlit rims.
             </p>
             <div className="af-hero-actions">
-              <button className="af-btn af-btn-primary">Explore Collection</button>
-              <button className="af-btn af-btn-secondary">View Motifs</button>
+              <button className="af-btn af-btn-primary"><IconDiamond size={15} color="white" /> Explore Collection <IconArrowRight size={15} color="white" /></button>
+              <button className="af-btn af-btn-secondary"><IconEye size={14} color="var(--fig)" /> View Motifs</button>
             </div>
           </section>
 
@@ -861,11 +1011,11 @@ export default function AmethystFluteShowcase() {
               <p className="af-section-subtitle">Light-refraction sweeps and gradient fills define interaction.</p>
             </div>
             <div className="af-button-row">
-              <button className="af-btn af-btn-primary">Primary Action</button>
-              <button className="af-btn af-btn-secondary">Secondary</button>
-              <button className="af-btn af-btn-success">Confirm</button>
-              <button className="af-btn af-btn-disabled" disabled>Disabled</button>
-              <a className="af-link" href="#">Gradient Underline Link</a>
+              <button className="af-btn af-btn-primary"><IconStar size={14} color="white" /> Primary Action</button>
+              <button className="af-btn af-btn-secondary"><IconLayers size={14} color="var(--fig)" /> Secondary</button>
+              <button className="af-btn af-btn-success"><IconCheckCircle size={16} /> Confirm</button>
+              <button className="af-btn af-btn-disabled" disabled><IconGlobe size={14} /> Disabled</button>
+              <a className="af-link" href="#"><IconArrowRight size={13} color="var(--amethyst)" /> Gradient Underline Link</a>
             </div>
           </section>
 
@@ -881,24 +1031,27 @@ export default function AmethystFluteShowcase() {
                   label: 'Vessel',
                   title: 'Ribbed Stemware',
                   text: 'Vertical grooves catch and bend light across translucent surfaces, creating prismatic depth.',
+                  icon: <IconGoblet size={13} color="var(--mauve)" />,
                 },
                 {
                   label: 'Palette',
                   title: 'Ombre Gradient',
                   text: 'Deep amethyst at the base blooming to warm apricot at the rim — a signature color journey.',
+                  icon: <IconDroplet size={13} color="var(--mauve)" />,
                 },
                 {
                   label: 'Texture',
                   title: 'Frosted Luminance',
                   text: 'Soft matte finishes meet polished ridges, balancing tactile warmth with visual clarity.',
+                  icon: <IconLayers size={13} color="var(--mauve)" />,
                 },
               ].map(card => (
                 <div key={card.title} className="af-card">
-                  <div className="af-card-header">{card.label}</div>
+                  <div className="af-card-header">{card.icon} {card.label}</div>
                   <div className="af-card-body">
                     <h3 className="af-card-title">{card.title}</h3>
                     <p className="af-card-text">{card.text}</p>
-                    <a className="af-link" href="#">View details</a>
+                    <a className="af-link" href="#"><IconArrowRight size={12} /> View details</a>
                   </div>
                 </div>
               ))}
@@ -938,7 +1091,7 @@ export default function AmethystFluteShowcase() {
               </div>
               <div className="af-field">
                 <button className="af-btn af-btn-primary" style={{ alignSelf: 'flex-start' }}>
-                  Submit Order
+                  <IconArrowRight size={15} color="white" /> Submit Order
                 </button>
               </div>
             </div>
@@ -952,20 +1105,20 @@ export default function AmethystFluteShowcase() {
             </div>
             <div className="af-alerts-grid">
               <div className="af-alert af-alert-success">
-                <strong>Success</strong>
-                Collection published to the evening catalog.
+                <span className="af-alert-icon"><IconCheckCircle /></span>
+                <div className="af-alert-content"><strong>Success</strong>Collection published to the evening catalog.</div>
               </div>
               <div className="af-alert af-alert-error">
-                <strong>Error</strong>
-                Glass finish specification is missing.
+                <span className="af-alert-icon"><IconXCircle /></span>
+                <div className="af-alert-content"><strong>Error</strong>Glass finish specification is missing.</div>
               </div>
               <div className="af-alert af-alert-warning">
-                <strong>Warning</strong>
-                Limited amethyst stock for this batch.
+                <span className="af-alert-icon"><IconAlertTriangle /></span>
+                <div className="af-alert-content"><strong>Warning</strong>Limited amethyst stock for this batch.</div>
               </div>
               <div className="af-alert af-alert-info">
-                <strong>Info</strong>
-                Next kiln firing scheduled in 48 hours.
+                <span className="af-alert-icon"><IconInfoCircle /></span>
+                <div className="af-alert-content"><strong>Info</strong>Next kiln firing scheduled in 48 hours.</div>
               </div>
             </div>
             <div className="af-progress-wrap">
@@ -987,7 +1140,7 @@ export default function AmethystFluteShowcase() {
             </div>
             <div className="af-layout-panel af-fluted">
               <div className="af-layout-header">
-                <div className="af-layout-icon" aria-hidden="true" />
+                <div className="af-layout-icon" aria-hidden="true"><IconCrystal size={22} /></div>
                 <div>
                   <div className="af-label">Current Release</div>
                   <div style={{ fontSize: '22px', fontWeight: 600, fontFamily: "'Cormorant Garamond', serif" }}>
@@ -997,9 +1150,9 @@ export default function AmethystFluteShowcase() {
               </div>
 
               {[
-                { name: 'Amethyst Goblet Set', status: 'Active', badge: 'active' },
-                { name: 'Peach Coupe Pair', status: 'In Review', badge: 'paused' },
-                { name: 'Ombre Carafe', status: 'Archived', badge: 'archived' },
+                { name: 'Amethyst Goblet Set', status: 'Active', badge: 'active', icon: <IconStar size={10} color="var(--success)" /> },
+                { name: 'Peach Coupe Pair', status: 'In Review', badge: 'paused', icon: <IconPause size={10} color="var(--warning)" /> },
+                { name: 'Ombre Carafe', status: 'Archived', badge: 'archived', icon: <IconArchive size={10} color="var(--mauve)" /> },
               ].map(item => (
                 <div key={item.name} className="af-row">
                   <div className="af-row-stem" aria-hidden="true" />
@@ -1008,9 +1161,9 @@ export default function AmethystFluteShowcase() {
                     <div className="af-row-sub">Status: {item.status}</div>
                   </div>
                   <div className="af-row-actions">
-                    <span className={`af-badge af-badge-${item.badge}`}>{item.status}</span>
-                    <button className="af-pill">Review</button>
-                    <button className="af-pill">Edit</button>
+                    <span className={`af-badge af-badge-${item.badge}`}>{item.icon} {item.status}</span>
+                    <button className="af-pill"><IconSearch size={11} color="var(--fig)" /> Review</button>
+                    <button className="af-pill"><IconPencil size={11} color="var(--fig)" /> Edit</button>
                   </div>
                 </div>
               ))}

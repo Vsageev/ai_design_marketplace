@@ -51,9 +51,41 @@ import {
   metadata as amberGlassMeta,
   PreviewComponent as AmberGlassPreview,
 } from './designs/amber-glass/preview';
+import {
+  metadata as grainDarkroomMeta,
+  PreviewComponent as GrainDarkroomPreview,
+} from './designs/grain-darkroom/preview';
+import {
+  metadata as oneOrangeMeta,
+  PreviewComponent as OneOrangePreview,
+} from './designs/one-orange/preview';
+import {
+  metadata as falafelMeta,
+  PreviewComponent as FalafelPreview,
+} from './designs/falafel/preview';
+import {
+  metadata as shawLightMeta,
+  PreviewComponent as ShawLightPreview,
+} from './designs/shaw-light/preview';
 
 // Design entries with their preview components
 const designs = [
+  {
+    ...amethystFluteMeta,
+    PreviewComponent: AmethystFlutePreview,
+  },
+  {
+    ...technicalEditorialMeta,
+    PreviewComponent: TechnicalEditorialPreview,
+  },
+  {
+    ...grainDarkroomMeta,
+    PreviewComponent: GrainDarkroomPreview,
+  },
+  {
+    ...oneOrangeMeta,
+    PreviewComponent: OneOrangePreview,
+  },
   {
     ...cheerfulMinimalismMeta,
     PreviewComponent: CheerfulMinimalismPreview,
@@ -91,20 +123,20 @@ const designs = [
     PreviewComponent: TechnicalEditorialBlueprintPreview,
   },
   {
-    ...technicalEditorialMeta,
-    PreviewComponent: TechnicalEditorialPreview,
-  },
-  {
     ...xLowMeta,
     PreviewComponent: XLowPreview,
   },
   {
-    ...amethystFluteMeta,
-    PreviewComponent: AmethystFlutePreview,
-  },
-  {
     ...amberGlassMeta,
     PreviewComponent: AmberGlassPreview,
+  },
+  {
+    ...falafelMeta,
+    PreviewComponent: FalafelPreview,
+  },
+  {
+    ...shawLightMeta,
+    PreviewComponent: ShawLightPreview,
   },
 ];
 

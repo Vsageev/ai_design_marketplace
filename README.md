@@ -23,6 +23,8 @@ src/
 
 ## Adding a New Design
 
+Follow `design_page_creation_guidelines.md` for the canonical page structure and file skeleton.
+
 1. Create a new folder under `src/app/designs/[design-name]/`
 
 2. Add required files:

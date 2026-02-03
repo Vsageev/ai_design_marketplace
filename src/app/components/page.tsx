@@ -1,53 +1,53 @@
 import Link from 'next/link';
 import {
-  metadata as animatedCommentThreadMeta,
-  PreviewComponent as AnimatedCommentThreadPreview,
-} from './animated-comment-thread/preview';
+  metadata as pointCloudFlatMeta,
+  PreviewComponent as PointCloudFlatPreview,
+} from './point-cloud-flat/preview';
 import {
-  metadata as cursorAuraPanelMeta,
-  PreviewComponent as CursorAuraPanelPreview,
-} from './cursor-aura-panel/preview';
+  metadata as reviewMarqueeMeta,
+  PreviewComponent as ReviewMarqueePreview,
+} from './review-marquee/preview';
 import {
-  metadata as tiltGlassCardsMeta,
-  PreviewComponent as TiltGlassCardsPreview,
-} from './tilt-glass-cards/preview';
+  metadata as matGlassMeta,
+  PreviewComponent as MatGlassPreview,
+} from './mat-glass/preview';
 import {
-  metadata as staggeredRevealGridMeta,
-  PreviewComponent as StaggeredRevealGridPreview,
-} from './staggered-reveal-grid/preview';
+  metadata as tvNoiseMeta,
+  PreviewComponent as TvNoisePreview,
+} from './tv-noise/preview';
 import {
-  metadata as parallaxMarqueeBandMeta,
-  PreviewComponent as ParallaxMarqueeBandPreview,
-} from './parallax-marquee-band/preview';
+  metadata as grainMeta,
+  PreviewComponent as GrainPreview,
+} from './grain/preview';
 import {
-  metadata as pulseRingCtaMeta,
-  PreviewComponent as PulseRingCtaPreview,
-} from './pulse-ring-cta/preview';
+  metadata as customGlassMeta,
+  PreviewComponent as CustomGlassPreview,
+} from './custom-glass/preview';
 
 const components = [
   {
-    ...animatedCommentThreadMeta,
-    PreviewComponent: AnimatedCommentThreadPreview,
+    ...pointCloudFlatMeta,
+    PreviewComponent: PointCloudFlatPreview,
   },
   {
-    ...cursorAuraPanelMeta,
-    PreviewComponent: CursorAuraPanelPreview,
+    ...reviewMarqueeMeta,
+    PreviewComponent: ReviewMarqueePreview,
   },
   {
-    ...tiltGlassCardsMeta,
-    PreviewComponent: TiltGlassCardsPreview,
+    ...matGlassMeta,
+    PreviewComponent: MatGlassPreview,
   },
   {
-    ...staggeredRevealGridMeta,
-    PreviewComponent: StaggeredRevealGridPreview,
+    ...tvNoiseMeta,
+    PreviewComponent: TvNoisePreview,
   },
   {
-    ...parallaxMarqueeBandMeta,
-    PreviewComponent: ParallaxMarqueeBandPreview,
+    ...grainMeta,
+    PreviewComponent: GrainPreview,
   },
   {
-    ...pulseRingCtaMeta,
-    PreviewComponent: PulseRingCtaPreview,
+    ...customGlassMeta,
+    PreviewComponent: CustomGlassPreview,
   },
 ];
 
