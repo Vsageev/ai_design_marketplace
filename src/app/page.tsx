@@ -28,10 +28,6 @@ import {
   PreviewComponent as RetroSnackPosterPreview,
 } from './designs/retro-snack-poster/preview';
 import {
-  metadata as hexSecurityMeta,
-  PreviewComponent as HexSecurityPreview,
-} from './designs/hex-security/preview';
-import {
   metadata as hexSecurityEditorialMeta,
   PreviewComponent as HexSecurityEditorialPreview,
 } from './designs/hex-security-editorial/preview';
@@ -43,6 +39,18 @@ import {
   metadata as technicalEditorialMeta,
   PreviewComponent as TechnicalEditorialPreview,
 } from './designs/technical-editorial/preview';
+import {
+  metadata as xLowMeta,
+  PreviewComponent as XLowPreview,
+} from './designs/x-low/preview';
+import {
+  metadata as amethystFluteMeta,
+  PreviewComponent as AmethystFlutePreview,
+} from './designs/amethyst-flute/preview';
+import {
+  metadata as amberGlassMeta,
+  PreviewComponent as AmberGlassPreview,
+} from './designs/amber-glass/preview';
 
 // Design entries with their preview components
 const designs = [
@@ -75,10 +83,6 @@ const designs = [
     PreviewComponent: RetroSnackPosterPreview,
   },
   {
-    ...hexSecurityMeta,
-    PreviewComponent: HexSecurityPreview,
-  },
-  {
     ...hexSecurityEditorialMeta,
     PreviewComponent: HexSecurityEditorialPreview,
   },
@@ -89,6 +93,18 @@ const designs = [
   {
     ...technicalEditorialMeta,
     PreviewComponent: TechnicalEditorialPreview,
+  },
+  {
+    ...xLowMeta,
+    PreviewComponent: XLowPreview,
+  },
+  {
+    ...amethystFluteMeta,
+    PreviewComponent: AmethystFlutePreview,
+  },
+  {
+    ...amberGlassMeta,
+    PreviewComponent: AmberGlassPreview,
   },
 ];
 

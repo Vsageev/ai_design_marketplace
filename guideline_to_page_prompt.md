@@ -1,6 +1,6 @@
 # Design Guidelines to Page Generator Prompt
 
-Use this prompt with an AI assistant to generate design showcase files from a design guidelines markdown file.
+This is the primary spec for producing new designs. Use it with an AI assistant to generate design showcase files from a design guidelines markdown file.
 
 ---
 
@@ -16,20 +16,45 @@ You are a React/Next.js developer. Your task is to create showcase files that de
 
 ### Requirements
 
-1. **Extract and apply** all design tokens from the guidelines:
+**Design Quality (must-haves)**  
+These apply even if the guidelines are light. If guidelines conflict, follow the guidelines, but preserve the spirit below.
+
+1. **Signature Motif System (2-4 motifs)**
+   - Define a small set of repeated visual motifs (e.g., brackets, corner ticks, dotted textures, rule lines, micro grids, terminal cursor, stipple, badges, overlays).
+   - Use them across multiple components (hero + cards, or hero + form, etc.).
+   - Motifs must be visible but subtle; they should reinforce the theme, not distract.
+
+2. **Hierarchy Contrast**
+   - Hero vs. body must be unmistakable at a glance.
+   - Use scale, weight, and/or font pairing to separate layers.
+   - Apply tighter line-height to headlines and more generous line-height to body.
+
+3. **Deliberate Whitespace & Rhythm**
+   - Use large gaps between major sections (e.g., 80-120px).
+   - Create a consistent rhythm for section headers, subheads, and body blocks.
+
+4. **Interaction Language**
+   - Use 1-2 unique hover effects that fit the theme (not just color darken).
+   - Hover effects should be intentional and demonstrate craft (e.g., sweep fill, gradient border reveal, stipple fade-in, bracket glow).
+   - Ensure at least one hover effect is present in the preview.
+
+5. **Extract and apply** all design tokens from the guidelines:
    - Color palette (backgrounds, text, accents, semantic colors)
    - Typography (fonts, sizes, weights, line heights)
    - Spacing values
    - Border radii
    - Shadows
    - Animation/transition timings
+   - If not explicitly specified, you must define tokens for spacing, radius, and hover/animation timings.
 
-2. **Generate these standard showcase sections** in `page.tsx` (in this order):
+6. **Generate these standard showcase sections** in `page.tsx` (in this order):
 
 #### Section 1: Hero Header
 - Page title using the largest heading style
 - Brief tagline describing the design philosophy
 - A primary CTA button demonstrating the main button style
+- Ensure the hero establishes the signature motif system and typographic contrast.
+- Include one motif that reappears later (e.g., bracket corners or grid lines).
 
 #### Section 2: Color Palette
 - Display all colors as swatches in a grid
@@ -50,6 +75,7 @@ You are a React/Next.js developer. Your task is to create showcase files that de
 - Disabled button state
 - Link styling
 - Apply any hover effects or animations from the guidelines
+- Ensure at least one unique hover effect is demonstrated here (if it’s button-related).
 
 #### Section 5: Cards
 - At least 3 cards in a row/grid
@@ -59,6 +85,7 @@ You are a React/Next.js developer. Your task is to create showcase files that de
   - Description text
   - A secondary action button or link
 - Apply the card hover effects from the guidelines (if specified)
+- Ensure at least one unique hover effect is demonstrated here (if it’s card-related).
 
 #### Section 6: Form Elements
 - Text input with label
@@ -80,8 +107,9 @@ You are a React/Next.js developer. Your task is to create showcase files that de
   - 2-3 list items or data rows (like a feature flag list, task list, or similar)
   - Status indicators (active/inactive badges)
   - Action buttons
+- Carry at least one signature motif into this section (not just color).
 
-3. **Generate `preview.tsx`** with:
+7. **Generate `preview.tsx`** with:
    - `metadata` object containing: id, name, description, tags
    - `PreviewComponent` function that renders a compact preview with real HTML/CSS
    - The preview should be ~200px tall and showcase key design elements (header, card, buttons, etc.)
@@ -168,6 +196,9 @@ export function PreviewComponent() {
 4. **Responsive**: Use relative units (rem, %) where the guidelines specify
 5. **Faithfully reproduce** the exact values from the guidelines (colors, spacing, fonts)
 6. **Use unique class prefixes** in preview.tsx to avoid CSS conflicts on the homepage
+7. **Hover effects**: include 1-2 unique hover effects across the page (buttons, cards, or key visuals). These should be visible in the preview if possible.
+8. **Signature motifs** should appear in at least two different component types (e.g., hero + cards).
+9. **Whitespace rhythm**: use generous spacing between sections and tighter spacing within components.
 
 ### Animation & Interaction Notes
 
@@ -175,6 +206,7 @@ export function PreviewComponent() {
 - Name classes descriptively: `.btn-primary`, `.card-hover`, etc.
 - Include any keyframe animations specified in the guidelines
 - If guidelines mention "no scaling" or "no elevation movement", respect those constraints
+- Avoid novelty that breaks UX: ensure hover effects keep text readable and do not shift layout.
 
 ### Output Format
 
@@ -183,6 +215,7 @@ Provide both complete, runnable TSX files. They should:
 - Require no additional dependencies beyond React
 - Be self-contained with all styles included
 - Include the guidelines' design philosophy as a visible subtitle or description
+- If you introduce motifs, mention them in the visible subtitle or microcopy once to establish context.
 
 ---
 

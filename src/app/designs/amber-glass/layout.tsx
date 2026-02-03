@@ -3,7 +3,7 @@ import path from 'path';
 import { DesignPageLayout } from '@/components/DesignPageLayout';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
-  const filePath = path.join(process.cwd(), 'src/app/designs/hex-security/guidelines.md');
+  const filePath = path.join(process.cwd(), 'src/app/designs/amber-glass/guidelines.md');
   let markdown = '';
 
   try {
@@ -13,7 +13,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <DesignPageLayout title="Hex Security" markdown={markdown}>
+    <DesignPageLayout title="Amber Glass" markdown={markdown}>
       {children}
     </DesignPageLayout>
   );
