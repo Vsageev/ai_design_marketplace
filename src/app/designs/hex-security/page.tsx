@@ -1,681 +1,845 @@
 import React from 'react';
 
 const cssStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+  .hex-showcase {
+    --hex-bg: #f7f7f7;
+    --hex-surface: #ffffff;
+    --hex-surface-soft: rgba(237, 237, 237, 0.3);
+    --hex-text: #000000;
+    --hex-text-muted: #5e5e5e;
+    --hex-border: #c7c7c7;
+    --hex-line: rgba(0, 0, 0, 0.1);
+    --hex-line-strong: rgba(0, 0, 0, 0.18);
+    --hex-accent: #fa651e;
+    --hex-accent-strong: #ff8b17;
+    --hex-danger: #ff312f;
 
-  .hexsec-showcase {
-    --bg-void: #0b0c0f;
-    --bg-panel: #12151a;
-    --bg-panel-light: #171b22;
-    --border-panel: #202530;
-
-    --text-primary: #f5f7fb;
-    --text-secondary: #c4c9d4;
-    --text-muted: #8b93a5;
-
-    --accent-lime: #b7ff3c;
-    --accent-lime-deep: #8be21a;
-    --accent-cyan: #4fd7ff;
-    --accent-amber: #ffb23f;
-    --accent-red: #ff4d5e;
-
-    --tint-lime: rgba(183, 255, 60, 0.12);
-    --tint-cyan: rgba(79, 215, 255, 0.12);
-    --tint-amber: rgba(255, 178, 63, 0.12);
-    --tint-red: rgba(255, 77, 94, 0.12);
-
-    --shadow-surface: 0 12px 28px rgba(0, 0, 0, 0.35);
-    --shadow-glow: 0 0 24px rgba(183, 255, 60, 0.18);
-
-    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, rgba(183, 255, 60, 0.08), transparent 45%),
-      linear-gradient(135deg, rgba(79, 215, 255, 0.06), transparent 55%),
-      var(--bg-void);
-    color: var(--text-primary);
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent 40%), var(--hex-bg);
+    color: var(--hex-text);
     min-height: 100vh;
-    padding: 56px 24px 80px;
-  }
-
-  .hexsec-grid-backdrop {
-    background-image:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: center;
-  }
-
-  .hexsec-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .hexsec-section {
-    background: var(--bg-panel);
-    border: 1px solid var(--border-panel);
-    border-radius: 18px;
-    padding: 32px;
-    margin-bottom: 28px;
-    box-shadow: var(--shadow-surface);
-  }
-
-  .hexsec-section-title {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-  }
-
-  .hexsec-hero {
+    padding: 72px 6vw 120px;
     position: relative;
     overflow: hidden;
-    padding: 72px 56px;
   }
 
-  .hexsec-hero::after {
-    content: '';
+  .hex-grid {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 15% 20%, rgba(183, 255, 60, 0.18), transparent 40%);
-    opacity: 0.7;
+    background-image:
+      linear-gradient(to right, var(--hex-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--hex-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.35;
+    animation: hex-grid-drift 16s linear infinite;
     pointer-events: none;
   }
 
-  .hexsec-hero-content {
+  .hex-showcase-content {
     position: relative;
     z-index: 1;
   }
 
-  .hexsec-hero-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+  .hex-section {
+    max-width: 1080px;
+    margin: 0 auto 72px;
+    padding: 32px;
+    border: 1px solid var(--hex-border);
+    border-radius: 16px;
+    background: var(--hex-surface);
+    animation: hex-rise 0.6s ease-out both;
+    will-change: transform, opacity;
+  }
+
+  .hex-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .hex-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .hex-section-title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .hex-section-label {
+    font-family: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--accent-lime);
-    margin-bottom: 18px;
+    color: var(--hex-text-muted);
   }
 
-  .hexsec-hero-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 56px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 18px;
-  }
-
-  .hexsec-hero-subtitle {
-    font-size: 17px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 620px;
-    margin-bottom: 32px;
-  }
-
-  .hexsec-hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
-  .hexsec-btn {
-    border-radius: 12px;
-    border: 1px solid transparent;
-    padding: 12px 22px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .hexsec-btn-primary {
-    background: var(--accent-lime);
-    color: var(--bg-void);
-    box-shadow: var(--shadow-glow);
-  }
-
-  .hexsec-btn-primary:hover {
-    background: var(--accent-lime-deep);
-    box-shadow: 0 0 28px rgba(183, 255, 60, 0.28);
-  }
-
-  .hexsec-btn-secondary {
-    background: var(--bg-panel-light);
-    color: var(--text-primary);
-    border-color: var(--border-panel);
-  }
-
-  .hexsec-btn-secondary:hover {
-    border-color: var(--accent-lime);
-  }
-
-  .hexsec-btn-ghost {
-    background: transparent;
-    color: var(--text-secondary);
-  }
-
-  .hexsec-btn-ghost:hover {
-    color: var(--text-primary);
-  }
-
-  .hexsec-btn-disabled {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-muted);
-    cursor: not-allowed;
-  }
-
-  .hexsec-link {
-    color: var(--accent-cyan);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .hexsec-link:hover {
-    text-decoration: underline;
-  }
-
-  .hexsec-color-grid {
+  .hex-hero {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    align-items: center;
+    background: linear-gradient(120deg, rgba(0, 0, 0, 0.04), transparent 45%),
+      var(--hex-surface);
   }
 
-  .hexsec-color-card {
-    background: var(--bg-panel-light);
-    border: 1px solid var(--border-panel);
-    border-radius: 14px;
-    padding: 12px;
+  .hex-hero-title {
+    font-family: 'Kalice-Trial Regular', 'Times New Roman', serif;
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin-bottom: 16px;
   }
 
-  .hexsec-color-swatch {
-    height: 72px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .hex-hero-subtitle {
+    font-size: 17px;
+    color: var(--hex-text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 420px;
   }
 
-  .hexsec-color-name {
-    font-size: 12px;
-    color: var(--text-secondary);
-  }
-
-  .hexsec-color-value {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .hexsec-type-sample {
-    padding: 18px 0;
-    border-bottom: 1px solid var(--border-panel);
-  }
-
-  .hexsec-type-sample:last-child {
-    border-bottom: none;
-  }
-
-  .hexsec-type-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .hexsec-h1 { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.02em; }
-  .hexsec-h2 { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
-  .hexsec-h3 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; }
-  .hexsec-h4 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600; }
-  .hexsec-body-large { font-size: 17px; line-height: 1.7; color: var(--text-secondary); }
-  .hexsec-body { font-size: 15px; line-height: 1.6; color: var(--text-secondary); }
-  .hexsec-body-small { font-size: 13px; line-height: 1.5; color: var(--text-muted); }
-  .hexsec-caption { font-size: 11px; line-height: 1.4; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
-  .hexsec-code { font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: var(--bg-panel-light); border: 1px solid var(--border-panel); padding: 4px 8px; border-radius: 8px; }
-
-  .hexsec-button-row {
+  .hex-cta-row {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     align-items: center;
   }
 
-  .hexsec-cards-grid {
+  .hex-btn {
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    background: var(--hex-accent);
+    color: #ffffff;
+  }
+
+  .hex-btn:hover {
+    background: var(--hex-accent-strong);
+    transform: translateY(-1px);
+  }
+
+  .hex-btn:active {
+    transform: translateY(0);
+  }
+
+  .hex-btn-secondary {
+    background: transparent;
+    color: var(--hex-text);
+    border-color: var(--hex-border);
+  }
+
+  .hex-btn-secondary:hover {
+    border-color: var(--hex-line-strong);
+    background: var(--hex-surface-soft);
+  }
+
+  .hex-hero-panel {
+    border: 1px solid var(--hex-border);
+    border-radius: 14px;
+    padding: 20px;
+    background: var(--hex-surface);
+    position: relative;
+  }
+
+  .hex-hero-panel:before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px dashed var(--hex-line-strong);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+
+  .hex-hero-panel-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
-  .hexsec-card {
-    background: var(--bg-panel-light);
-    border: 1px solid var(--border-panel);
-    border-radius: 18px;
-    padding: 22px;
-    transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+  .hex-hero-stat {
+    border: 1px solid var(--hex-border);
+    border-radius: 10px;
+    padding: 14px;
+    background: var(--hex-surface-soft);
+    transition: transform 0.18s ease, border-color 0.18s ease;
+    animation: hex-fade-in 0.45s ease-out both;
   }
 
-  .hexsec-card:hover {
-    border-color: var(--accent-lime);
-    box-shadow: var(--shadow-glow);
+  .hex-hero-stat:hover {
+    transform: translateY(-2px);
+    border-color: var(--hex-line-strong);
   }
 
-  .hexsec-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
+  .hex-hero-stat-label {
+    font-family: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hex-text-muted);
+    margin-bottom: 6px;
   }
 
-  .hexsec-card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(183, 255, 60, 0.15);
-    color: var(--accent-lime);
-    font-size: 18px;
-  }
-
-  .hexsec-card-title {
+  .hex-hero-stat-value {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 10px;
   }
 
-  .hexsec-card-text {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 16px;
+  .hex-palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
   }
 
-  .hexsec-form-group {
-    margin-bottom: 18px;
+  .hex-swatch {
+    border: 1px solid var(--hex-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--hex-surface);
+    transition: transform 0.18s ease, border-color 0.18s ease;
+    animation: hex-fade-in 0.45s ease-out both;
   }
 
-  .hexsec-label {
-    display: block;
+  .hex-swatch:hover {
+    transform: translateY(-2px);
+    border-color: var(--hex-line-strong);
+  }
+
+  .hex-swatch-color {
+    height: 78px;
+  }
+
+  .hex-swatch-body {
+    padding: 12px;
     font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 8px;
+    color: var(--hex-text-muted);
   }
 
-  .hexsec-input {
+  .hex-type-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .hex-type-sample {
+    border: 1px solid var(--hex-border);
+    border-radius: 12px;
+    padding: 16px;
+    background: var(--hex-surface-soft);
+    transition: border-color 0.18s ease;
+  }
+
+  .hex-type-sample:hover {
+    border-color: var(--hex-line-strong);
+  }
+
+  .hex-label {
+    font-family: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--hex-text-muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .hex-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hex-btn-outline {
+    background: transparent;
+    border: 1px solid var(--hex-border);
+    color: var(--hex-text);
+  }
+
+  .hex-btn-outline:hover {
+    border-color: var(--hex-line-strong);
+  }
+
+  .hex-btn-success {
+    background: #111111;
+    color: #ffffff;
+  }
+
+  .hex-btn-disabled {
+    background: var(--hex-surface-soft);
+    color: var(--hex-text-muted);
+    border: 1px solid var(--hex-border);
+    cursor: not-allowed;
+  }
+
+  .hex-link {
+    color: var(--hex-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.18s ease;
+  }
+
+  .hex-link:hover {
+    color: var(--hex-accent);
+  }
+
+  .hex-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .hex-card {
+    border: 1px solid var(--hex-border);
+    border-radius: 12px;
+    padding: 16px;
+    background: var(--hex-surface);
+    transition: border 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    animation: hex-fade-in 0.45s ease-out both;
+  }
+
+  .hex-card:hover {
+    border-color: var(--hex-line-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -28px rgba(0, 0, 0, 0.35);
+  }
+
+  .hex-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .hex-card-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--hex-accent), var(--hex-accent-strong));
+  }
+
+  .hex-card-title {
+    font-weight: 600;
+  }
+
+  .hex-card-desc {
+    color: var(--hex-text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .hex-form-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .hex-input {
     width: 100%;
     padding: 12px 14px;
-    border-radius: 12px;
-    border: 1px solid var(--border-panel);
-    background: var(--bg-panel-light);
-    color: var(--text-primary);
+    border-radius: 8px;
+    border: 1px solid var(--hex-border);
+    background: var(--hex-surface);
     font-size: 14px;
-    transition: border 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .hexsec-input:focus {
+  .hex-input:focus {
     outline: none;
-    border-color: var(--accent-lime);
-    box-shadow: 0 0 0 3px rgba(183, 255, 60, 0.12);
+    border-color: var(--hex-text);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
   }
 
-  .hexsec-input-error {
-    border-color: var(--accent-red);
+  .hex-input-error {
+    border-color: var(--hex-danger);
   }
 
-  .hexsec-error-text {
-    font-size: 12px;
-    color: var(--accent-red);
-    margin-top: 6px;
+  .hex-select {
+    position: relative;
   }
 
-  .hexsec-checkbox {
+  .hex-select select {
+    appearance: none;
+  }
+
+  .hex-select:after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--hex-text);
+    border-bottom: 1.5px solid var(--hex-text);
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .hex-checkbox {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 14px;
-    color: var(--text-secondary);
   }
 
-  .hexsec-checkbox input {
-    accent-color: var(--accent-lime);
+  .hex-checkbox input {
     width: 16px;
     height: 16px;
+    accent-color: var(--hex-accent);
   }
 
-  .hexsec-alert {
-    display: flex;
-    align-items: center;
+  .hex-alert-grid {
+    display: grid;
     gap: 12px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    border: 1px solid transparent;
-    margin-bottom: 12px;
+  }
+
+  .hex-alert {
+    border-radius: 10px;
+    border: 1px solid var(--hex-border);
+    padding: 12px 14px;
     font-size: 14px;
-  }
-
-  .hexsec-alert-success { background: var(--tint-lime); color: var(--accent-lime); border-color: rgba(183, 255, 60, 0.3); }
-  .hexsec-alert-error { background: var(--tint-red); color: var(--accent-red); border-color: rgba(255, 77, 94, 0.3); }
-  .hexsec-alert-warning { background: var(--tint-amber); color: var(--accent-amber); border-color: rgba(255, 178, 63, 0.3); }
-  .hexsec-alert-info { background: var(--tint-cyan); color: var(--accent-cyan); border-color: rgba(79, 215, 255, 0.3); }
-
-  .hexsec-progress {
-    margin-top: 20px;
-  }
-
-  .hexsec-progress-head {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
+    align-items: center;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+    animation: hex-fade-in 0.45s ease-out both;
   }
 
-  .hexsec-progress-bar {
-    height: 8px;
-    background: var(--bg-panel-light);
+  .hex-alert:hover {
+    transform: translateY(-2px);
+    border-color: var(--hex-line-strong);
+  }
+
+  .hex-alert-success {
+    border-color: rgba(250, 101, 30, 0.35);
+    background: rgba(250, 101, 30, 0.12);
+  }
+
+  .hex-alert-error {
+    border-color: rgba(255, 49, 47, 0.4);
+    background: rgba(255, 49, 47, 0.12);
+  }
+
+  .hex-alert-warning {
+    border-color: rgba(255, 139, 23, 0.4);
+    background: rgba(255, 139, 23, 0.12);
+  }
+
+  .hex-alert-info {
+    border-color: rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .hex-progress {
+    height: 10px;
     border-radius: 999px;
-    border: 1px solid var(--border-panel);
+    background: var(--hex-surface-soft);
     overflow: hidden;
   }
 
-  .hexsec-progress-fill {
+  .hex-progress-bar {
     height: 100%;
     width: 65%;
-    background: linear-gradient(90deg, var(--accent-lime), var(--accent-cyan));
+    background: linear-gradient(90deg, var(--hex-accent), var(--hex-accent-strong));
   }
 
-  .hexsec-sample-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  .hex-content-grid {
+    display: grid;
+    gap: 12px;
   }
 
-  .hexsec-sample-item {
+  .hex-row {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background: var(--bg-panel-light);
-    border: 1px solid var(--border-panel);
-    border-radius: 14px;
-    padding: 16px 18px;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--hex-border);
+    border-radius: 10px;
+    background: var(--hex-surface);
+    transition: transform 0.18s ease, border-color 0.18s ease;
+    animation: hex-fade-in 0.45s ease-out both;
   }
 
-  .hexsec-sample-meta {
-    display: flex;
+  .hex-row:hover {
+    transform: translateY(-2px);
+    border-color: var(--hex-line-strong);
+  }
+
+  .hex-badge {
+    display: inline-flex;
     align-items: center;
-    gap: 14px;
-  }
-
-  .hexsec-sample-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(79, 215, 255, 0.15);
-    color: var(--accent-cyan);
-    font-size: 18px;
-  }
-
-  .hexsec-badge {
+    gap: 6px;
     padding: 4px 10px;
     border-radius: 999px;
+    background: rgba(250, 101, 30, 0.15);
+    color: var(--hex-accent);
     font-size: 11px;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .hexsec-badge-active { background: var(--tint-lime); color: var(--accent-lime); }
-  .hexsec-badge-watch { background: rgba(255, 255, 255, 0.06); color: var(--text-secondary); }
-  .hexsec-badge-risk { background: var(--tint-amber); color: var(--accent-amber); }
+  .hex-actions {
+    display: flex;
+    gap: 8px;
+  }
 
-  @media (max-width: 768px) {
-    .hexsec-hero {
-      padding: 56px 24px;
+  .hex-cornered {
+    position: relative;
+  }
+
+  .hex-cornered:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) left top / 12px 1px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) left top / 1px 12px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) right top / 12px 1px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) right top / 1px 12px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) left bottom / 12px 1px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) left bottom / 1px 12px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) right bottom / 12px 1px no-repeat,
+      linear-gradient(var(--hex-line-strong), var(--hex-line-strong)) right bottom / 1px 12px no-repeat;
+    opacity: 0.6;
+  }
+
+  @keyframes hex-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hex-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hex-grid-drift {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    100% {
+      background-position: 56px 56px, 56px 56px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .hex-showcase {
+      padding: 48px 5vw 88px;
     }
 
-    .hexsec-hero-title {
-      font-size: 38px;
+    .hex-section {
+      padding: 24px;
+    }
+
+    .hex-hero-title {
+      font-size: 44px;
     }
   }
 `;
 
-export default function HexSecurityShowcase() {
+export default function DesignShowcase() {
   return (
     <>
       <style>{cssStyles}</style>
-      <main className="hexsec-showcase hexsec-grid-backdrop">
-        <div className="hexsec-container">
-          <section className="hexsec-section hexsec-hero">
-            <div className="hexsec-hero-content">
-              <div className="hexsec-hero-label">Backed by Y Combinator</div>
-              <h1 className="hexsec-hero-title">Security at the speed of development.</h1>
-              <p className="hexsec-hero-subtitle">
-                Attackers have AI. Defenders need it too. A high-clarity monitoring interface built for rapid detection,
-                triage, and response.
-              </p>
-              <div className="hexsec-hero-actions">
-                <button className="hexsec-btn hexsec-btn-primary">Start monitoring</button>
-                <button className="hexsec-btn hexsec-btn-secondary">View threat map</button>
-              </div>
-            </div>
-          </section>
-
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Color Palette</h2>
-
-            <div style={{ marginBottom: '24px' }}>
-              <p className="hexsec-type-label">Backgrounds</p>
-              <div className="hexsec-color-grid">
-                {[
-                  { name: 'Void', value: '#0b0c0f' },
-                  { name: 'Panel', value: '#12151a' },
-                  { name: 'Panel Light', value: '#171b22' },
-                  { name: 'Panel Edge', value: '#202530' },
-                ].map((color) => (
-                  <div key={color.name} className="hexsec-color-card">
-                    <div className="hexsec-color-swatch" style={{ background: color.value }}></div>
-                    <div className="hexsec-color-name">{color.name}</div>
-                    <div className="hexsec-color-value">{color.value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '24px' }}>
-              <p className="hexsec-type-label">Text</p>
-              <div className="hexsec-color-grid">
-                {[
-                  { name: 'Primary', value: '#f5f7fb' },
-                  { name: 'Secondary', value: '#c4c9d4' },
-                  { name: 'Muted', value: '#8b93a5' },
-                ].map((color) => (
-                  <div key={color.name} className="hexsec-color-card">
-                    <div className="hexsec-color-swatch" style={{ background: color.value }}></div>
-                    <div className="hexsec-color-name">{color.name}</div>
-                    <div className="hexsec-color-value">{color.value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+      <main className="hex-showcase">
+        <div className="hex-grid"></div>
+        <div className="hex-showcase-content">
+          <section className="hex-section hex-hero hex-cornered" style={{ animationDelay: '0.05s' }}>
             <div>
-              <p className="hexsec-type-label">Accents</p>
-              <div className="hexsec-color-grid">
-                {[
-                  { name: 'Lime', value: '#b7ff3c' },
-                  { name: 'Lime Deep', value: '#8be21a' },
-                  { name: 'Cyan', value: '#4fd7ff' },
-                  { name: 'Amber', value: '#ffb23f' },
-                  { name: 'Red', value: '#ff4d5e' },
-                ].map((color) => (
-                  <div key={color.name} className="hexsec-color-card">
-                    <div className="hexsec-color-swatch" style={{ background: color.value }}></div>
-                    <div className="hexsec-color-name">{color.name}</div>
-                    <div className="hexsec-color-value">{color.value}</div>
-                  </div>
-                ))}
+              <span className="hex-section-label">Design System</span>
+              <h1 className="hex-hero-title">Hex Security Interface</h1>
+              <p className="hex-hero-subtitle">
+                A crisp, technical UI for continuous security. Serif headlines, mono labels, and a grid-first
+                layout bring focus to every signal.
+              </p>
+              <div className="hex-cta-row">
+                <button className="hex-btn">Start a scan</button>
+                <button className="hex-btn hex-btn-secondary">View report</button>
               </div>
             </div>
-          </section>
-
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Typography Scale</h2>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">H1 - Hero Title</div>
-              <div className="hexsec-h1">Security posture at a glance.</div>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">H2 - Section Title</div>
-              <div className="hexsec-h2">Live anomaly detection</div>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">H3 - Card Title</div>
-              <div className="hexsec-h3">Suspicious session cluster</div>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">H4 - Subtitle</div>
-              <div className="hexsec-h4">Auth chain monitoring</div>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">Body Large</div>
-              <p className="hexsec-body-large">
-                Hex Security surfaces the few signals that matter most, blending streaming telemetry with curated risk
-                scoring so your team can respond faster.
-              </p>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">Body</div>
-              <p className="hexsec-body">
-                Every workflow is tuned for clarity: clean grid alignment, readable contrast, and a deliberate spacing
-                system that keeps noise low.
-              </p>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">Code</div>
-              <code className="hexsec-code">rule: anomaly_rate &gt; 1.8 - window: 5m</code>
-            </div>
-            <div className="hexsec-type-sample">
-              <div className="hexsec-type-label">Caption</div>
-              <p className="hexsec-caption">Last refreshed 90 seconds ago</p>
-            </div>
-          </section>
-
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Buttons & Interactive Elements</h2>
-            <div className="hexsec-button-row">
-              <button className="hexsec-btn hexsec-btn-primary">Primary</button>
-              <button className="hexsec-btn hexsec-btn-secondary">Secondary</button>
-              <button className="hexsec-btn hexsec-btn-ghost">Ghost</button>
-              <button className="hexsec-btn hexsec-btn-disabled" disabled>Disabled</button>
-              <a className="hexsec-link">Read the playbook -&gt;</a>
-            </div>
-          </section>
-
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Cards</h2>
-            <div className="hexsec-cards-grid">
-              {[
-                { icon: 'SAT', title: 'Sensor Grid', text: 'Track every endpoint and identity with continuous signal coverage.' },
-                { icon: 'NAV', title: 'Path Insights', text: 'Map suspicious paths from entry point to privilege escalation.' },
-                { icon: 'RAP', title: 'Rapid Response', text: 'Trigger automated containment within your defined guardrails.' },
-              ].map((card) => (
-                <div key={card.title} className="hexsec-card">
-                  <div className="hexsec-card-header">
-                    <div className="hexsec-card-icon">{card.icon}</div>
-                    <span className="hexsec-badge hexsec-badge-watch">Live</span>
-                  </div>
-                  <div className="hexsec-card-title">{card.title}</div>
-                  <p className="hexsec-card-text">{card.text}</p>
-                  <a className="hexsec-link">View details -&gt;</a>
+            <div className="hex-hero-panel hex-cornered">
+              <div className="hex-hero-panel-grid">
+                <div className="hex-hero-stat hex-cornered">
+                  <div className="hex-hero-stat-label">Agents Online</div>
+                  <div className="hex-hero-stat-value">12</div>
                 </div>
-              ))}
+                <div className="hex-hero-stat hex-cornered">
+                  <div className="hex-hero-stat-label">Active Targets</div>
+                  <div className="hex-hero-stat-value">48</div>
+                </div>
+                <div className="hex-hero-stat hex-cornered">
+                  <div className="hex-hero-stat-label">Critical Findings</div>
+                  <div className="hex-hero-stat-value">3</div>
+                </div>
+                <div className="hex-hero-stat hex-cornered">
+                  <div className="hex-hero-stat-label">Mean Time to Fix</div>
+                  <div className="hex-hero-stat-value">2.1d</div>
+                </div>
+              </div>
             </div>
           </section>
 
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Form Elements</h2>
-            <div style={{ maxWidth: '480px' }}>
-              <div className="hexsec-form-group">
-                <label className="hexsec-label">Investigation Name</label>
-                <input className="hexsec-input" type="text" placeholder="Credential Access Sweep" />
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.1s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Color Palette</h2>
+              <span className="hex-section-label">Tokens</span>
+            </div>
+            <div className="hex-palette-grid">
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#f7f7f7' }}></div>
+                <div className="hex-swatch-body">Primary Background · #f7f7f7</div>
               </div>
-              <div className="hexsec-form-group">
-                <label className="hexsec-label">Region Filter (Error)</label>
-                <input className="hexsec-input hexsec-input-error" type="text" placeholder="Select a region" />
-                <div className="hexsec-error-text">No telemetry detected for this region.</div>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#ffffff' }}></div>
+                <div className="hex-swatch-body">Surface · #ffffff</div>
               </div>
-              <div className="hexsec-form-group hexsec-checkbox">
-                <input type="checkbox" id="auto-triage" defaultChecked />
-                <label htmlFor="auto-triage">Enable automated triage recommendations</label>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#c7c7c7' }}></div>
+                <div className="hex-swatch-body">Border · #c7c7c7</div>
               </div>
-              <div className="hexsec-form-group">
-                <label className="hexsec-label">Response Strategy</label>
-                <select className="hexsec-input">
-                  <option>Observe only</option>
-                  <option>Notify analyst</option>
-                  <option>Isolate endpoint</option>
-                  <option>Lock account</option>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#000000' }}></div>
+                <div className="hex-swatch-body">Primary Text · #000000</div>
+              </div>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#5e5e5e' }}></div>
+                <div className="hex-swatch-body">Secondary Text · #5e5e5e</div>
+              </div>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#fa651e' }}></div>
+                <div className="hex-swatch-body">Signal Orange · #fa651e</div>
+              </div>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#ff8b17' }}></div>
+                <div className="hex-swatch-body">Warm Orange · #ff8b17</div>
+              </div>
+              <div className="hex-swatch hex-cornered">
+                <div className="hex-swatch-color" style={{ background: '#ff312f' }}></div>
+                <div className="hex-swatch-body">Alert Red · #ff312f</div>
+              </div>
+            </div>
+          </section>
+
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.15s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Typography Scale</h2>
+              <span className="hex-section-label">Serif + Sans + Mono</span>
+            </div>
+            <div className="hex-type-grid">
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H1 / Hero</span>
+                <h1 style={{ fontFamily: "'Kalice-Trial Regular', 'Times New Roman', serif", fontSize: '52px' }}>
+                  The system sees every surface.
+                </h1>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H2</span>
+                <h2 style={{ fontSize: '36px', fontWeight: 500 }}>Continuous coverage with disciplined type.</h2>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H3</span>
+                <h3 style={{ fontSize: '28px', fontWeight: 500 }}>A clear hierarchy for critical data.</h3>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H4</span>
+                <h4 style={{ fontSize: '22px', fontWeight: 500 }}>Precision in every label.</h4>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H5</span>
+                <h5 style={{ fontSize: '18px', fontWeight: 500 }}>Meticulous data scanning.</h5>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">H6</span>
+                <h6 style={{ fontSize: '16px', fontWeight: 500 }}>Signal confidence.</h6>
+              </div>
+              <div className="hex-type-sample hex-cornered">
+                <span className="hex-label">Body</span>
+                <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--hex-text-muted)' }}>
+                  Hex Security balances a serif headline with a clean sans body for clarity. Mono labels and small
+                  caps support data-heavy interfaces without losing warmth.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.2s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Buttons & Interactions</h2>
+              <span className="hex-section-label">Action Layer</span>
+            </div>
+            <div className="hex-btn-row">
+              <button className="hex-btn">Run audit</button>
+              <button className="hex-btn hex-btn-outline">Schedule scan</button>
+              <button className="hex-btn hex-btn-success">Confirm fix</button>
+              <button className="hex-btn hex-btn-disabled">Disabled</button>
+              <a className="hex-link" href="#">View agent logs</a>
+            </div>
+          </section>
+
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.25s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Cards</h2>
+              <span className="hex-section-label">Findings</span>
+            </div>
+            <div className="hex-card-grid">
+              <article className="hex-card hex-cornered">
+                <div className="hex-card-header">
+                  <div className="hex-card-icon"></div>
+                  <div>
+                    <div className="hex-card-title">API Surface Mapping</div>
+                    <span className="hex-label">Coverage 98%</span>
+                  </div>
+                </div>
+                <p className="hex-card-desc">
+                  Enumerates every endpoint and traces new drift in the service mesh.
+                </p>
+                <a className="hex-link" href="#">Review map</a>
+              </article>
+              <article className="hex-card hex-cornered">
+                <div className="hex-card-header">
+                  <div className="hex-card-icon"></div>
+                  <div>
+                    <div className="hex-card-title">Credential Exposure</div>
+                    <span className="hex-label">Priority High</span>
+                  </div>
+                </div>
+                <p className="hex-card-desc">
+                  Detects leaked secrets in build logs and verifies revocation status.
+                </p>
+                <a className="hex-link" href="#">Open incident</a>
+              </article>
+              <article className="hex-card hex-cornered">
+                <div className="hex-card-header">
+                  <div className="hex-card-icon"></div>
+                  <div>
+                    <div className="hex-card-title">Runtime Monitoring</div>
+                    <span className="hex-label">Live</span>
+                  </div>
+                </div>
+                <p className="hex-card-desc">
+                  Tracks anomalous traffic and highlights active exploit attempts.
+                </p>
+                <a className="hex-link" href="#">View stream</a>
+              </article>
+            </div>
+          </section>
+
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.3s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Form Elements</h2>
+              <span className="hex-section-label">Inputs</span>
+            </div>
+            <div className="hex-form-grid">
+              <label>
+                <span className="hex-label">Target domain</span>
+                <input className="hex-input" placeholder="api.hex-secure.com" />
+              </label>
+              <label>
+                <span className="hex-label">API key (error state)</span>
+                <input className="hex-input hex-input-error" placeholder="Invalid key" />
+              </label>
+              <label className="hex-checkbox">
+                <input type="checkbox" defaultChecked /> Enable continuous testing
+              </label>
+              <label className="hex-select">
+                <span className="hex-label">Scan cadence</span>
+                <select className="hex-input">
+                  <option>Every 6 hours</option>
+                  <option>Daily</option>
+                  <option>Weekly</option>
                 </select>
-              </div>
-              <button className="hexsec-btn hexsec-btn-primary">Create investigation</button>
+              </label>
+              <button className="hex-btn">Submit scan</button>
             </div>
           </section>
 
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Feedback & Status</h2>
-            <div style={{ maxWidth: '560px' }}>
-              <div className="hexsec-alert hexsec-alert-success">OK: All sensors synced within the last 2 minutes.</div>
-              <div className="hexsec-alert hexsec-alert-error">ERR: Credential theft pattern confirmed in zone 3.</div>
-              <div className="hexsec-alert hexsec-alert-warning">WARN: Elevated failed logins from a new ASN.</div>
-              <div className="hexsec-alert hexsec-alert-info">INFO: Risk score recalculated with latest telemetry.</div>
-
-              <div className="hexsec-progress">
-                <div className="hexsec-progress-head">
-                  <span>Investigation readiness</span>
-                  <span>65%</span>
-                </div>
-                <div className="hexsec-progress-bar">
-                  <div className="hexsec-progress-fill"></div>
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.35s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Feedback & Status</h2>
+              <span className="hex-section-label">Alerts</span>
+            </div>
+            <div className="hex-alert-grid">
+              <div className="hex-alert hex-alert-success hex-cornered">
+                <span>Success: Critical issue resolved.</span>
+                <strong>Resolved</strong>
+              </div>
+              <div className="hex-alert hex-alert-error hex-cornered">
+                <span>Error: Agent failed handshake.</span>
+                <strong>Retry</strong>
+              </div>
+              <div className="hex-alert hex-alert-warning hex-cornered">
+                <span>Warning: New surface detected.</span>
+                <strong>Review</strong>
+              </div>
+              <div className="hex-alert hex-alert-info hex-cornered">
+                <span>Info: Next scan begins in 45 minutes.</span>
+                <strong>Scheduled</strong>
+              </div>
+              <div>
+                <span className="hex-label">Progress</span>
+                <div className="hex-progress">
+                  <div className="hex-progress-bar"></div>
                 </div>
               </div>
             </div>
           </section>
 
-          <section className="hexsec-section">
-            <h2 className="hexsec-section-title">Sample Content Layout</h2>
-            <div className="hexsec-sample-list">
-              {[
-                { icon: 'AI', title: 'AI-flagged session cluster', meta: 'Detections - 7 alerts', badge: 'Active' },
-                { icon: 'ZT', title: 'Zero-trust boundary scan', meta: 'Policy - 3 anomalies', badge: 'Watching' },
-                { icon: 'NET', title: 'External access spike', meta: 'Network - 2 risk paths', badge: 'Risk' },
-              ].map((item) => (
-                <div key={item.title} className="hexsec-sample-item">
-                  <div className="hexsec-sample-meta">
-                    <div className="hexsec-sample-icon">{item.icon}</div>
-                    <div>
-                      <div style={{ fontSize: '15px', fontWeight: 600 }}>{item.title}</div>
-                      <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{item.meta}</div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    <span className={`hexsec-badge ${
-                      item.badge === 'Active'
-                        ? 'hexsec-badge-active'
-                        : item.badge === 'Risk'
-                          ? 'hexsec-badge-risk'
-                          : 'hexsec-badge-watch'
-                    }`}>{item.badge}</span>
-                    <button className="hexsec-btn hexsec-btn-ghost">Open</button>
-                  </div>
+          <section className="hex-section hex-cornered" style={{ animationDelay: '0.4s' }}>
+            <div className="hex-section-header">
+              <h2 className="hex-section-title">Sample Content Layout</h2>
+              <span className="hex-section-label">Operations</span>
+            </div>
+            <div className="hex-content-grid">
+              <div className="hex-row hex-cornered">
+                <div>
+                  <div className="hex-card-title">Service perimeter scan</div>
+                  <div className="hex-card-desc">Running in us-east-1</div>
                 </div>
-              ))}
+                <div className="hex-actions">
+                  <span className="hex-badge">Active</span>
+                  <button className="hex-btn hex-btn-outline">Pause</button>
+                </div>
+              </div>
+              <div className="hex-row hex-cornered">
+                <div>
+                  <div className="hex-card-title">Credential rotation audit</div>
+                  <div className="hex-card-desc">Next execution in 2 hours</div>
+                </div>
+                <div className="hex-actions">
+                  <span className="hex-badge">Queued</span>
+                  <button className="hex-btn hex-btn-outline">Reschedule</button>
+                </div>
+              </div>
+              <div className="hex-row hex-cornered">
+                <div>
+                  <div className="hex-card-title">Zero trust validation</div>
+                  <div className="hex-card-desc">Awaiting new policy</div>
+                </div>
+                <div className="hex-actions">
+                  <span className="hex-badge">Inactive</span>
+                  <button className="hex-btn hex-btn-outline">Activate</button>
+                </div>
+              </div>
             </div>
           </section>
         </div>

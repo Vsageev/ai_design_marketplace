@@ -65,7 +65,7 @@ const previewStyles = `
     height: 10px;
     border-radius: 999px;
     border: 2px solid var(--ink);
-    background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
     margin-top: 8px;
   }
 

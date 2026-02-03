@@ -3,11 +3,51 @@ import {
   metadata as animatedCommentThreadMeta,
   PreviewComponent as AnimatedCommentThreadPreview,
 } from './animated-comment-thread/preview';
+import {
+  metadata as cursorAuraPanelMeta,
+  PreviewComponent as CursorAuraPanelPreview,
+} from './cursor-aura-panel/preview';
+import {
+  metadata as tiltGlassCardsMeta,
+  PreviewComponent as TiltGlassCardsPreview,
+} from './tilt-glass-cards/preview';
+import {
+  metadata as staggeredRevealGridMeta,
+  PreviewComponent as StaggeredRevealGridPreview,
+} from './staggered-reveal-grid/preview';
+import {
+  metadata as parallaxMarqueeBandMeta,
+  PreviewComponent as ParallaxMarqueeBandPreview,
+} from './parallax-marquee-band/preview';
+import {
+  metadata as pulseRingCtaMeta,
+  PreviewComponent as PulseRingCtaPreview,
+} from './pulse-ring-cta/preview';
 
 const components = [
   {
     ...animatedCommentThreadMeta,
     PreviewComponent: AnimatedCommentThreadPreview,
+  },
+  {
+    ...cursorAuraPanelMeta,
+    PreviewComponent: CursorAuraPanelPreview,
+  },
+  {
+    ...tiltGlassCardsMeta,
+    PreviewComponent: TiltGlassCardsPreview,
+  },
+  {
+    ...staggeredRevealGridMeta,
+    PreviewComponent: StaggeredRevealGridPreview,
+  },
+  {
+    ...parallaxMarqueeBandMeta,
+    PreviewComponent: ParallaxMarqueeBandPreview,
+  },
+  {
+    ...pulseRingCtaMeta,
+    PreviewComponent: PulseRingCtaPreview,
   },
 ];
 
